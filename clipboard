@@ -1,0 +1,48 @@
+  <div class="copybtn" data-clipboard-target="#registerlinkindex" onclick="myFunction()" style="float: right">
+                        <i class="fa fa-copy " style="font-size: 20px"></i>
+                    </div>
+                    <i style="font-size: 18px;display: none" class="fa fa-question-circle binary-info"></i>  <strong> Reference link <a style="color: cornflowerblue;" id="registerlinkindex">https://office.lofinet.com/<?php echo Session::get('user_name'); ?></a></strong>
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<script>
+    function setTooltip(btn, message) {
+        $(btn).tooltip('hide')
+            .attr('data-original-title', message)
+            .tooltip('show');
+    }
+
+    function hideTooltip(btn) {
+        setTimeout(function() {
+            $(btn).tooltip('hide');
+        }, 1000);
+    }
+
+    function myFunction() {
+        var clipboard = new ClipboardJS('.copybtn');
+        clipboard.on('success', function(e) {
+            setTooltip(e.trigger, 'Copied!');
+            hideTooltip(e.trigger);
+            e.clearSelection();
+
+            $(".fa-copy").css("display","block");
+            $(".fa-copy").css("color", "green");
+            $(".copybtn").children().removeClass("fa-copy");
+            $(".copybtn").children().addClass("fa-check-circle");
+        });
+
+        clipboard.on('error', function(e) {
+            setTooltip(e.trigger, 'Error!');
+            hideTooltip(e.trigger);
+        });
+
+    }
+    
+</script>
